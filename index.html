@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CardioFit & Care</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 420px;
+        }
+        h2 {
+            color: #0284c7;
+            margin-top: 0;
+            text-align: center;
+        }
+        .field {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333333;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .rpe-guide {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: #475569;
+        }
+        .rpe-guide p {
+            margin: 0 0 6px 0;
+            font-weight: bold;
+            color: #0284c7;
+        }
+        .rpe-guide ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+        .rpe-guide li {
+            margin-bottom: 3px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #0284c7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>CardioFit & Care</h2>
+        <form>
+            <div class="field">
+                <label for="exercise">Exercise Type</label>
+                <select id="exercise">
+                    <option>Walking</option>
+                    <option>Cycling</option>
+                    <option>Light Aerobics</option>
+                    <option>Water Aerobics</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="minutes">Duration (minutes)</label>
+                <input type="number" id="minutes" placeholder="20">
+            </div>
+
+            <div class="rpe-guide">
+                <p>RPE Scale Quick Reference:</p>
+                <ul>
+                    <li>1–2: Very Easy (light walk)</li>
+                    <li>3–4: Moderate (easy breathing)</li>
+                    <li>5–6: Somewhat Hard (heavier breathing)</li>
+                    <li>7–8: Hard (deep breathing)</li>
+                    <li>9–10: Maximum Effort (all-out)</li>
+                </ul>
+            </div>
+
+            <div class="field">
+                <label for="rpe-level">RPE Rating (1-10)</label>
+                <input type="number" id="rpe-level" placeholder="4" min="1" max="10">
+            </div>
+
+            <button type="submit">Log Workout</button>
+        </form>
+    </div>
+
+</body>
+</html>
