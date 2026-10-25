@@ -1,2 +1,13 @@
 # cardio-fit-and-care
 CardioFit &amp; Care CIT 457 Capstone Project
+# CardioFit & Care - RPE Trend Visualization
+
+# Sample workout dates and exertion ratings (RPE 1-10)
+date <- as.Date(c('2026-10-20', '2026-10-21', '2026-10-22', '2026-10-23', '2026-10-24'))
+rpe <- c(3, 4, 2, 5, 4)
+
+# Plot line graph
+plot(date, rpe, type="b", col="blue", pch=19,
+     xlab="Date", ylab="Exertion Level (RPE 1-10)",
+     main="CardioFit & Care - Exertion Trend")
+     
