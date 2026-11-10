@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CardioFit & Care - App Prototype</title>
+    <style>
+        :root {
+            --primary: #0284c7;
+            --bg: #f1f5f9;
+            --card-bg: #ffffff;
+            --text: #0f172a;
+            --subtext: #475569;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #cbd5e1;
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* Mobile App Frame Shell */
+        .app-container {
+            background-color: var(--bg);
+            width: 100%;
+            max-width: 390px;
+            height: 780px;
+            border-radius: 36px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+            border: 8px solid #1e293b;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* App Header Bar */
+        .app-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 16px 14px 16px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .app-header span {
+            display: block;
+            font-size: 11px;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 2px;
+        }
+
+        /* App Scrollable Content Area */
+        .app-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* App Card Component */
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            margin: 0 0 12px 0;
+        }
+
+        .field-group {
+            margin-bottom: 12px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--subtext);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 14px;
+            box-sizing: border-box;
+            background-color: #f8fafc;
+            color: var(--text);
+            outline: none;
+        }
+
+        select:focus, input:focus {
+            border-color: var(--primary);
+            background-color: #ffffff;
+        }
+
+        /* RPE Guide Badge System */
+        .rpe-guide-box {
+            background-color: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-size: 11px;
+            color: #0369a1;
+            margin-bottom: 12px;
+        }
+
+        .rpe-guide-box strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .rpe-list {
+            margin: 0;
+            padding-left: 14px;
+            line-height: 1.4;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary:active {
+            background-color: #0369a1;
+        }
+
+        /* Dynamic Workout Log List */
+        .log-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .log-item:last-child {
+            border-bottom: none;
+        }
+
+        .log-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .log-activity {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .log-details {
+            font-size: 12px;
+            color: var(--subtext);
+        }
+
+        .rpe-badge {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 12px;
+        }
+
+        .empty-log {
+            font-size: 12px;
+            color: var(--subtext);
+            text-align: center;
+            padding: 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <header class="app-header">
+            CardioFit & Care
+            <span>Low-Impact Exercise & RPE Tracking</span>
+        </header>
+
+        <main class="app-content">
+            <!-- Logging Form Card -->
+            <section class="card">
+                <h3 class="card-title">Log Daily Activity</h3>
+                <form id="workoutForm">
+                    <div class="field-group">
+                        <label for="workoutType">Exercise Type</label>
+                        <select id="workoutType" required>
+                            <option value="Walking">Walking</option>
+                            <option value="Cycling">Cycling</option>
+                            <option value="Light Aerobics">Light Aerobics</option>
+                            <option value="Water Aerobics">Water Aerobics</option>
+                            <option value="Chair Exercises">Chair Exercises</option>
+                        </select>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="duration">Duration (minutes)</label>
+                        <input type="number" id="duration" placeholder="e.g. 20" min="1" max="180" required>
+                    </div>
+
+                    <div class="rpe-guide-box">
+                        <strong>RPE Scale Guide (1-10):</strong>
+                        <ul class="rpe-list">
+                            <li>1–2: Very Light (comfortable walk)</li>
+                            <li>3–4: Moderate (conversational)</li>
+                            <li>5–6: Somewhat Hard (heavier breathing)</li>
+                            <li>7–8: Hard (vigorous effort)</li>
+                            <li>9–10: Very Hard / Max Effort</li>
+                        </ul>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="rpeScore">Rating of Perceived Exertion (1–10)</label>
+                        <input type="number" id="rpeScore" placeholder="e.g. 4" min="1" max="10" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Log Workout Entry</button>
+                </form>
+            </section>
+
+            <!-- Activity History Card -->
+            <section class="card">
+                <h3 class="card-title">Recent Logged Workouts</h3>
+                <div id="workoutLogList">
+                    <div class="empty-log">No workout entries recorded yet.</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.getElementById('workoutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const type = document.getElementById('workoutType').value;
+            const duration = document.getElementById('duration').value;
+            const rpe = document.getElementById('rpeScore').value;
+            const logList = document.getElementById('workoutLogList');
+
+            // Remove empty placeholder message on first log
+            const emptyMsg = logList.querySelector('.empty-log');
+            if (emptyMsg) {
+                emptyMsg.remove();
+            }
+
+            // Create new entry row element
+            const item = document.createElement('div');
+            item.className = 'log-item';
+            item.innerHTML = `
+                <div class="log-info">
+                    <span class="log-activity">${type}</span>
+                    <span class="log-details">${duration} mins</span>
+                </div>
+                <span class="rpe-badge">RPE ${rpe}</span>
+            `;
+
+            // Prepend new entry to top of list
+            logList.insertBefore(item, logList.firstChild);
+
+            // Reset input values
+            document.getElementById('duration').value = '';
+            document.getElementById('rpeScore').value = '';
+        });
+    </script>
+</body>
+</html>
